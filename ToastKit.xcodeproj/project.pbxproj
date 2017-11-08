@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		C474F0731FB33F5100C2457A /* ToastKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C474F0711FB33F5100C2457A /* ToastKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C474F07A1FB33F6400C2457A /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0791FB33F6400C2457A /* Toast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C474F06E1FB33F5100C2457A /* ToastKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToastKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F0711FB33F5100C2457A /* ToastKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastKit.h; sourceTree = "<group>"; };
 		C474F0721FB33F5100C2457A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C474F0791FB33F6400C2457A /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		C474F0701FB33F5100C2457A /* ToastKit */ = {
 			isa = PBXGroup;
 			children = (
+				C474F0791FB33F6400C2457A /* Toast.swift */,
 				C474F0711FB33F5100C2457A /* ToastKit.h */,
 				C474F0721FB33F5100C2457A /* Info.plist */,
 			);
@@ -95,6 +98,7 @@
 				TargetAttributes = {
 					C474F06D1FB33F5100C2457A = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,6 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C474F07A1FB33F6400C2457A /* Toast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +257,7 @@
 		C474F0771FB33F5100C2457A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -266,6 +272,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jacobgold.ToastKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -273,6 +280,7 @@
 		C474F0781FB33F5100C2457A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
