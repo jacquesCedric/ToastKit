@@ -8,7 +8,9 @@
 
 import Cocoa
 
-// MARK: - External call
+fileprivate var currentToast: NSView?
+
+// MARK: - External calls
 extension NSViewController {
     public func toast(message: String, title: String, image: NSImage = NSImage(named: NSImage.Name.caution)!) {
         let t = makeToast(message: message, title: title, image: image)
@@ -21,11 +23,16 @@ extension NSViewController {
     }
 }
 
+
 //////////////////////////////////////////////
 // MARK: - Internal funcs
 fileprivate extension NSViewController {
     // This function adds the toast to the view calling it and then dismisses it when necessary
     func handleToastForDisplay(toast: NSView) {
+        // Deal with existing toast, if there is one
+        if let t = currentToast { t.removeFromSuperview() }
+        currentToast = toast
+        
         self.view.addSubview(toast)
         
         let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=20)-[toast]-20-|", options: .alignAllBottom, metrics: nil, views: ["toast" : toast])
@@ -51,13 +58,15 @@ fileprivate extension NSViewController {
         v.translatesAutoresizingMaskIntoConstraints = false
         
         let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "|-5-[m]-5-|", options: .alignAllTop, metrics: nil, views: ["m" : m])
-        NSLayoutConstraint.activate(hConstraints)
         let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[m]-5-|", options: .alignAllTop, metrics: nil, views: ["m" : m])
-        NSLayoutConstraint.activate(vConstraints)
         let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "[m(>=50,<=300)]", options: .alignAllTop, metrics: nil, views: ["m" : m])
-        NSLayoutConstraint.activate(widthConstraints)
         let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[m(>=17)]", options: .alignAllTop, metrics: nil, views: ["m" : m])
+        
+        NSLayoutConstraint.activate(hConstraints)
+        NSLayoutConstraint.activate(vConstraints)
+        NSLayoutConstraint.activate(widthConstraints)
         NSLayoutConstraint.activate(heightConstraints)
+        
         
         return v
     }
@@ -88,14 +97,11 @@ fileprivate extension NSViewController {
         i.translatesAutoresizingMaskIntoConstraints = false
         v.translatesAutoresizingMaskIntoConstraints = false
         
-        let h1Constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[i(50)]-5-[t(>=200,<=300)]-5-|", options: .alignAllTop, metrics: nil,
-                                                           views: ["t" : t, "i" : i])
-        let h2Constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[m(>=200,<=300)]", options: .alignAllTop, metrics: nil,
-                                                           views: ["m" : m])
-        let v1Constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[t(17)]-1-[m(>=17)]-5-|", options: .alignAllLeft, metrics: nil,
-                                                           views: ["t" : t, "m" : m])
-        let v2Constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=5)-[i(50)]-(>=5)-|", options: .alignAllLeft, metrics: nil,
-                                                           views: ["i" : i])
+        let h1Constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[i(50)]-5-[t(>=200,<=300)]-5-|", options: .alignAllTop, metrics: nil, views: ["t" : t, "i" : i])
+        let h2Constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[m(>=200,<=300)]", options: .alignAllTop, metrics: nil, views: ["m" : m])
+        let v1Constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[t(17)]-1-[m(>=17)]-5-|", options: .alignAllLeft, metrics: nil, views: ["t" : t, "m" : m])
+        let v2Constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=5)-[i(50)]-(>=5)-|", options: .alignAllLeft, metrics: nil, views: ["i" : i])
+        
         NSLayoutConstraint.activate(h1Constraints)
         NSLayoutConstraint.activate(h2Constraints)
         NSLayoutConstraint.activate(v1Constraints)
@@ -113,6 +119,7 @@ fileprivate extension NSViewController {
         
         return stf
     }
+    
     
     //////////////////////////////////////////////
     // MARK: - Aesthetics
