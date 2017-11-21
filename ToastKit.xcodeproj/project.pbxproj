@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C474F0731FB33F5100C2457A /* ToastKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C474F0711FB33F5100C2457A /* ToastKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C474F07A1FB33F6400C2457A /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0791FB33F6400C2457A /* Toast.swift */; };
+		C4EAFCBE1FC3ED1F0058073D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C4EAFCBD1FC3ED1F0058073D /* README.md */; };
+		C4EAFCC01FC3F35A0058073D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C4EAFCBF1FC3F35A0058073D /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,6 +18,8 @@
 		C474F0711FB33F5100C2457A /* ToastKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastKit.h; sourceTree = "<group>"; };
 		C474F0721FB33F5100C2457A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C474F0791FB33F6400C2457A /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		C4EAFCBD1FC3ED1F0058073D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C4EAFCBF1FC3F35A0058073D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,8 @@
 		C474F0641FB33F5100C2457A = {
 			isa = PBXGroup;
 			children = (
+				C4EAFCBD1FC3ED1F0058073D /* README.md */,
+				C4EAFCBF1FC3F35A0058073D /* LICENSE */,
 				C474F0701FB33F5100C2457A /* ToastKit */,
 				C474F06F1FB33F5100C2457A /* Products */,
 			);
@@ -125,6 +131,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EAFCC01FC3F35A0058073D /* LICENSE in Resources */,
+				C4EAFCBE1FC3ED1F0058073D /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
