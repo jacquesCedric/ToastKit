@@ -2,8 +2,7 @@
 ToastKit is a swift extension that adds Toast style notifications to macOS apps.
 
 ## Screenshots
-![](images/text.gif?raw=true)
-![](images/text+image.gif?raw=true)
+![](images/test.gif?raw=true)
 
 ## Examples
 ```swift
