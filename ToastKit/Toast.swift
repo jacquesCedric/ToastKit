@@ -8,15 +8,18 @@
 
 import Cocoa
 
+// Keep track of existing toast, if there is one
 fileprivate var currentToast: NSView?
 
 // MARK: - External calls
 extension NSViewController {
+    // This makes a toast with an image, message, and title
     public func toast(message: String, title: String, image: NSImage = NSImage(named: NSImage.Name.caution)!) {
         let t = makeToast(message: message, title: title, image: image)
         handleToastForDisplay(toast: t)
     }
     
+    // This is a simple toast, containing only a message
     public func toast(message: String) {
         let t = makeToast(message: message)
         handleToastForDisplay(toast: t)
@@ -27,7 +30,7 @@ extension NSViewController {
 //////////////////////////////////////////////
 // MARK: - Internal funcs
 fileprivate extension NSViewController {
-    // This function adds the toast to the view calling it and then dismisses it when necessary
+    // Adds the toast to whatever view is calling it, then dismisses it
     func handleToastForDisplay(toast: NSView) {
         // Deal with existing toast, if there is one
         if let t = currentToast { t.removeFromSuperview() }
@@ -79,11 +82,11 @@ fileprivate extension NSViewController {
         v.layer = styleToast()
         
         // Add message
-        let m = createTextLabel(message: message, alignment: .left)
+        let m = createTextLabel(message: message)
         v.addSubview(m)
         
         // Add the title
-        let t = createTextLabel(message: title, alignment: .left)
+        let t = createTextLabel(message: title)
         v.addSubview(t)
         
         // Add an image
@@ -98,7 +101,7 @@ fileprivate extension NSViewController {
         v.translatesAutoresizingMaskIntoConstraints = false
         
         let h1Constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[i(50)]-5-[t(>=200,<=300)]-5-|", options: .alignAllTop, metrics: nil, views: ["t" : t, "i" : i])
-        let h2Constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[m(>=200,<=300)]", options: .alignAllTop, metrics: nil, views: ["m" : m])
+        let h2Constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[m(>=200,<=400)]", options: .alignAllTop, metrics: nil, views: ["m" : m])
         let v1Constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[t(17)]-1-[m(>=17)]-5-|", options: .alignAllLeft, metrics: nil, views: ["t" : t, "m" : m])
         let v2Constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=5)-[i(50)]-(>=5)-|", options: .alignAllLeft, metrics: nil, views: ["i" : i])
         
@@ -106,16 +109,15 @@ fileprivate extension NSViewController {
         NSLayoutConstraint.activate(h2Constraints)
         NSLayoutConstraint.activate(v1Constraints)
         NSLayoutConstraint.activate(v2Constraints)
-        //        i.centerYAnchor.constraint(equalTo: v.centerYAnchor).isActive = true
         
         return v
     }
     
     // Generate the message component of the toast
-    func createTextLabel(message: String, alignment: NSTextAlignment = .center) -> NSTextField {
+    func createTextLabel(message: String) -> NSTextField {
         let tf = NSTextField(frame: NSMakeRect(0, 0, 200, 17))
         tf.stringValue = message
-        let stf = styleTextLabel(tf: tf, alignment: alignment)
+        let stf = styleTextLabel(tf: tf)
         
         return stf
     }
@@ -135,7 +137,7 @@ fileprivate extension NSViewController {
     }
     
     // Style the message text
-    func styleTextLabel(tf: NSTextField, alignment: NSTextAlignment) -> NSTextField {
+    func styleTextLabel(tf: NSTextField) -> NSTextField {
         // Sizing
         var f = tf.frame
         f.size.height = tf.intrinsicContentSize.height
@@ -148,7 +150,7 @@ fileprivate extension NSViewController {
         tf.focusRingType = .none
         tf.isEditable = false
         tf.isSelectable = false
-        tf.alignment = alignment
+        tf.alignment = .left
         
         return tf
     }
